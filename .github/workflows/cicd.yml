@@ -1,4 +1,4 @@
-name: Java CI
+name: CICD Pipeline
 
 on:
   push:
@@ -11,12 +11,13 @@ jobs:
     steps:
     # to checkout a code. its going to take a copy of the repo
     - uses: actions/checkout@v4 
-    - name: Set up JDK 11
+    - name: Set up JDK 17
       uses: actions/setup-java@v4
       
       with:
-        java-version: '11'
+        java-version: '17'
         distribution: 'temurin'
+        cache: maven
         
-    - name: Build with Ant
-      run: ant -noinput -buildfile build.xml
+    - name: Build with Maven
+      run: mvn compile
